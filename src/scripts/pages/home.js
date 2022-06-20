@@ -55,6 +55,7 @@ const toggleOptionList = (recipes, type) => {
     ) {
       document.querySelector('.list-container').remove();
     }
+    //
     handleArrow(openBtn, 'fa-chevron-down', 'fa-chevron-up');
     const list = getTypeList(recipes, category);
     const listParent = document.querySelector(`.input-${category}-container`);
@@ -75,6 +76,7 @@ const toggleOptionList = (recipes, type) => {
       listContainer.appendChild(listItem);
     });
     setTags(category);
+    // tagArray.push(setTags(category));
     //todo  filterWithTags function
   });
 };

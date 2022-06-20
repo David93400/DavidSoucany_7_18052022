@@ -47,6 +47,7 @@ const setTags = (type) => {
         e.preventDefault();
         tagContainer.remove();
       });
+      return option.innerText;
     });
   });
 };
