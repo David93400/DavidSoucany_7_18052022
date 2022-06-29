@@ -161,10 +161,6 @@ const searchOptionsByInput = (recipes, type) => {
   });
 };
 
-const mainSearch = (recipes, keyword) => {
-  console.log(recipes, keyword);
-};
-
 const cleanRecipesCard = () => {
   const recipesCard = document.querySelectorAll('.recipe-card');
   recipesCard ? recipesCard.forEach((recipe) => recipe.remove()) : null;
@@ -184,7 +180,6 @@ export {
   setInputFilter,
   searchOptionsByInput,
   setTags,
-  mainSearch,
   cleanRecipesCard,
   displaySelectSection,
 };

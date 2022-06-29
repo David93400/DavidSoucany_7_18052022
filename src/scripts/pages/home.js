@@ -8,10 +8,10 @@ import {
   displaySelectSection,
   getTypeList,
   handleArrow,
-  mainSearch,
   setInputFilter,
   setTags,
 } from '../utils/filter';
+import { mainSearch } from '../mainSearch';
 
 async function getRecipes() {
   const data = await customFetch('./data/recipes.json');
@@ -104,7 +104,6 @@ export default async function init() {
   let filteredRecipes;
   const searchInput = document.querySelector('.search-bar');
   searchInput.addEventListener('input', (e) => {
-    //todo function to avoid dry mapping
     filteredRecipes = mainSearch(recipes, e.target.value);
     displaySelectSection(recipesConstants, filteredRecipes);
 
