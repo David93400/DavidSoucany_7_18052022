@@ -8,10 +8,10 @@ import {
   displaySelectSection,
   getTypeList,
   handleArrow,
-  mainSearch,
   setInputFilter,
   setTags,
 } from '../utils/filter';
+import { mainSearch } from '../mainSearch';
 
 async function getRecipes() {
   const data = await customFetch('./data/recipes.json');
