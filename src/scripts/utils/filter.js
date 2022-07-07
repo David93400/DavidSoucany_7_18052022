@@ -101,6 +101,7 @@ const setInputFilter = (type) => {
   return inputContainer;
 };
 const searchOptionsByInput = (recipes, type) => {
+  const list = getTypeList(recipes, type.type);
   const category = type.type;
   const input = document.querySelector(`.input-${type.type}`);
   const listParent = document.querySelector(`.input-${category}-container`);
@@ -108,8 +109,6 @@ const searchOptionsByInput = (recipes, type) => {
   input.addEventListener('click', () => {
     cleanError('.error');
     document.querySelector('form').reset();
-    const listContainer = document.querySelector(`.list-container`);
-    listContainer && listContainer.remove();
   });
   // listening to input
   input.addEventListener('input', (e) => {
@@ -123,11 +122,11 @@ const searchOptionsByInput = (recipes, type) => {
       cleanError('.error');
       const error = createGenericElement('div', '', 'error');
       error.innerText = 'Veuillez entrer au moins 3 caractères';
-      document.querySelector('.search-section').appendChild(error);
+      document.querySelector('.input-section').appendChild(error);
     } else {
       //  cleaning & set up list
       cleanError('.error');
-      const list = getTypeList(recipes, type.type);
+
       if (document.querySelector(`.${type.type}-list`))
         document.querySelector(`.${type.type}-list`).remove();
 
@@ -148,9 +147,6 @@ const searchOptionsByInput = (recipes, type) => {
         } else {
           document.querySelector('.error') &&
             document.querySelector('.error').remove();
-          const error = createGenericElement('div', '', 'error');
-          error.innerText = 'Aucun résultats ne correspond à votre recherche';
-          document.querySelector('.search-section').appendChild(error);
           return;
         }
         listParent.appendChild(listContainer);

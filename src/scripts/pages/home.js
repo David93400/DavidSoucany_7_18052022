@@ -45,17 +45,12 @@ export const displayInputOption = (recipes, type) => {
 
 const toggleOptionList = (recipes, type) => {
   const category = type.type;
-  const openBtn = document.querySelector(`.${category}-chevron-down`);
-  openBtn.addEventListener('click', (e) => {
-    const arrowUp = document.querySelector(`.fa-chevron-up`);
-    arrowUp ? handleArrow(arrowUp, 'fa-chevron-down', 'fa-chevron-up') : null;
-    if (
-      document.querySelector('.list-container') &&
-      e.target.classList.contains('fa-chevron-down')
-    ) {
-      document.querySelector('.list-container').remove();
-    }
-    handleArrow(openBtn, 'fa-chevron-down', 'fa-chevron-up');
+  const input = document.querySelector(`.input-${category}`);
+  input.addEventListener('focus', () => {
+    const arrowDown = document.querySelector(`.${category}-chevron-down`);
+    arrowDown
+      ? handleArrow(arrowDown, 'fa-chevron-down', 'fa-chevron-up')
+      : null;
     const list = getTypeList(recipes, category);
     const listParent = document.querySelector(`.input-${category}-container`);
     const listContainer = createGenericElement(
@@ -65,7 +60,6 @@ const toggleOptionList = (recipes, type) => {
     );
     listParent.appendChild(listContainer);
     list.forEach((item) => {
-      //TODO add class 'selected' to selected item with ternaire
       const listItem = createGenericElement(
         'div',
         item,
@@ -75,7 +69,12 @@ const toggleOptionList = (recipes, type) => {
       listContainer.appendChild(listItem);
     });
     setTags(category);
-    //todo  filterWithTags function
+  });
+  input.addEventListener('blur', () => {
+    const arrowUp = document.querySelector(`.fa-chevron-up`);
+    arrowUp ? handleArrow(arrowUp, 'fa-chevron-up', 'fa-chevron-down') : null;
+    const listContainer = document.querySelector(`.list-container`);
+    listContainer && listContainer.remove();
   });
 };
 
